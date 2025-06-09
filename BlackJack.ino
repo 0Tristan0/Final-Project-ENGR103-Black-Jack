@@ -158,11 +158,15 @@ void loop() {
   }
 
 
-  // If the switch is flicked
+  // If the switch is flicked,
   if (switchFlag){
     Serial.print("\nYou left the table with: $");
     Serial.print(accountBalance);
     Serial.println("");
+    // Set LEDs to blue to show the user has left the table.
+    for(int i=0; i<10; i++){
+      CircuitPlayground.setPixelColor(i, 0, 0, 255);
+    }
 
     // Wait until the user joins back into the table by flicking the switch
     while(digitalRead(switchPin) == LOW){
@@ -338,7 +342,7 @@ void FirstCards(){
   // When we set display equal to false in the drawCard() function, we still get another card, but we do not print the values of that card
   display = false;
   dealerSecondCard = drawCard();
-  display = true; // set back equal to truw so that way if the user draws more cards it prints what they are.
+  display = true; // set back equal to true so that way if the user draws more cards it prints what they are.
 
   //Calculate the total score of the dealer 
   dealerTotal = dealerFirstCard + dealerSecondCard;
@@ -349,9 +353,6 @@ void FirstCards(){
 
   // Tell the user it is now their turn to decide what they want to do
   Serial.println("\n----------Your Turn---------");
-  for(int i=0; i<10; i++){ // Set the LEDs on the board to green to signify it is the user's turn 
-    CircuitPlayground.setPixelColor(i, 0, 255, 0);
-    }
   }
 
 // This is a function that plays the happy jingle when the user wins a round
@@ -369,4 +370,3 @@ void FirstCards(){
     CircuitPlayground.playTone(174, 400);// F3
     CircuitPlayground.playTone(165, 800);// E3
 }
-
