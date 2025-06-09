@@ -347,10 +347,6 @@ void FirstCards(){
   //Calculate the total score of the dealer 
   dealerTotal = dealerFirstCard + dealerSecondCard;
 
-  // DELETE LATER
-  Serial.print("\nDealer starting total: ");
-  Serial.println(dealerTotal);
-
   // Tell the user it is now their turn to decide what they want to do
   Serial.println("\n----------Your Turn---------");
   }
